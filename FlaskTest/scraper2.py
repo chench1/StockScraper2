@@ -33,39 +33,25 @@ def calculate(ticker):
 
     # Define a function to map the compound scores to sentiment labels
     def map_to_sentiment_label(compound):
-        if compound > 0.05:
+        if compound > 0.1:  # Adjust this threshold for a more positive sentiment
             return 'Positive'  # Positive sentiment
-        elif compound < -0.05:
+        elif compound < -0.1:  # Adjust this threshold for a more negative sentiment
             return 'Negative'  # Negative sentiment
         else:
-            return 'Neutral'  # Neutral sentiment (you can adjust this threshold)
-
-    # Map compound scores to sentiment labels
-    predicted_sentiments = [map_to_sentiment_label(compound) for compound in predicted_sentiments]
-
-    # Combine the headlines and their predicted sentiment labels
-    headline_sentiments = list(zip(headlines, predicted_sentiments))
-
-    # Output the sentiment labels for the web-scraped headlines
-    for headline, sentiment in headline_sentiments:
-        print(f'Headline: {headline}\nPredicted Sentiment: {sentiment}\n')
+            return None  # Exclude 'Neutral' sentiment
+        
+    predicted_sentiments = [map_to_sentiment_label(compound) for compound in predicted_sentiments if map_to_sentiment_label(compound) is not None]
 
     # Calculate the overall sentiment by considering the majority sentiment label
     sentiment_counts = Counter(predicted_sentiments)
-    overall_sentiment = sentiment_counts.most_common(1)[0][0]
 
-    # Map the overall sentiment label to an integer
-    overall_sentiment_int = 0  # Default to neutral
-    if overall_sentiment == 'Positive':
-        overall_sentiment_int = 1
-    elif overall_sentiment == 'Negative':
-        overall_sentiment_int = -1
+    if sentiment_counts['Positive'] > sentiment_counts['Negative']:
+        overall_sentiment_str = 'Positive'
+    else:
+        overall_sentiment_str = 'Negative'
 
     # Calculate the certainty as a percentage
-    certainty_percentage = (sentiment_counts[overall_sentiment] / len(predicted_sentiments)) * 100
+    certainty_percentage = (sentiment_counts[overall_sentiment_str] / len(predicted_sentiments)) * 100
 
-    # Print the overall sentiment as an integer and the certainty percentage
-    #print(f'Overall Sentiment (Integer Format): {overall_sentiment_int}')
-    #print(f'Certainty of Overall Sentiment: {certainty_percentage:.2f}%')
-
-    return [overall_sentiment, certainty_percentage]
+    # Print the overall sentiment and the certainty percentage
+    return[overall_sentiment_str, certainty_percentage]
