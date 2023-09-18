@@ -114,7 +114,7 @@
         <!-- <img src="" class="position-absolute top-0 start-0" alt="stocktest1" style="width: 100%; height: 100%; opacity:0.2;"> -->
     <img src="https://drive.google.com/uc?export=view&id=19qqEwhHbdAy9FCm2xhDx0KjV5IeVxVjN" class="position-absolute top-0 start-0" alt="stocktest1" style="width: 100%; height: 100%; opacity:0.2; z-index: -1;">
     <p class=" position-absolute text-end top-0 end-0 mt-1" style="color: white; z-index: 1; margin-right: 20px">Created for Purdue's Hello World 2023 hackathon</p>
-    <div class= "m-0 text-center align-middle" style=" z-index: 2; height:80vh;  background: rgb(14,20,34); background: linear-gradient(180deg, rgba(14,20,34,0) 0%, rgba(0,0,0,0) 40%, rgba(14,20,34,1) 100%);">
+    <div class= "m-0 text-center align-middle" style=" z-index: 2; height:82vh;  background: rgb(14,20,34); background: linear-gradient(180deg, rgba(14,20,34,0) 0%, rgba(0,0,0,0) 40%, rgba(14,20,34,1) 100%);">
         <div class="d-flex justify-content-center align-items-center h-100" >
             <div class="ms-5">
                 <h1 id="MainTitle" class="animate" style="margin-right: 50px;">stock scraper</h1>
@@ -126,7 +126,7 @@
     </div>
 
     <!-- background-color: rgb(9, 20, 31); -->
-    <div class="test" style=" height:100vh;background: rgb(14,20,34);">
+    <div class="test" style="background: rgb(14,20,34); z-index: 3;">
         <div id="title" class="ms-3 m">
             <h1 style ="color: white; padding-left: 50px;">
                 stock scraper
@@ -166,55 +166,12 @@
                     </script>
                     
                     {% endif %}
-                    
-                
-                <!-- <div id="graph">
-                    <canvas id="stockHistoryChart"></canvas>
-                    <script>
-                        function createChart(history) {
-                            console.log(history.index);
-                            console.log(history.close);
-                            let sHC = document.getElementById("stockHistoryChart");
-                            // console.log(JSON.parse(history));
-                            
-                            let myChart = new Chart(sHC, {
-                                type: "line",
-                                data: {
-                                    labels: ["Time over a year"],
-                                    datasets: [
-                                    {
-                                        data: history,
-                                        backgroundColor: "rgba(153,205,1,0.6)",
-                                    }
-                                ]
-                
-                                }
-                            }
-                            );    
-                        }
-
-                        createChart("{{data.history}}"); -->
                         
                     </script>
                 </div>
                     
                 {% endif %}
                 
-
-
-                <!-- <script>
-                    // JavaScript code to fetch data from the Flask route
-                    fetch('/get-ticker-prediction?ticker=GOOG')
-                        .then(response => response.json())
-                        .then(data => {
-                            // Update the HTML element with the prediction data
-                            document.getElementById('prediction').textContent = data;
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                        });
-                </script> -->   
-
 
             </div>
         
@@ -227,22 +184,3 @@
 </body>
 
 </html>
-
-<!-- <!DOCTYPE html>
-
-    <head>
-        
-        <style>
-            
-            
-        </style> 
-        <link rel="stylesheet" href="style.css">
-    </head>
-
-    <body ">
-        <h1>
-            Stock Scraper
-        </h1>
-        
-    </body>
-</html> -->
